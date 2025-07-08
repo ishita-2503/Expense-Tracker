@@ -23,7 +23,7 @@ A comprehensive and user-friendly web-based Expense Tracker application built wi
 5) Smart Tips & Alerts:
     Receive intelligent tips and alerts based on your spending habits and savings performance, encouraging better financial discipline.
    
-6)Advanced Filtering & Search:
+6) Advanced Filtering & Search:
    Efficiently find specific transactions using multiple filters (date, category, transaction type, amount range) and a powerful search bar by description.
    
 7) Customizable Categories:
