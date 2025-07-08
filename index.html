@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="login-page" class="hidden">
+        <h2 class="text-3xl font-bold text-gray-800">Welcome!</h2>
+        <p class="text-gray-600 mb-6">Enter your name and set a password to get started.</p>
+        <input type="text" id="username-input" placeholder="Your Name" class="focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50" />
+        <input type="password" id="password-input" placeholder="Password" class="focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50" />
+        <button id="login-btn" class="btn">Login</button>
+        <div id="login-message" class="message-box mt-4"></div>
+    </div>
+
+    <!-- Main Expense Tracker App -->
+    <div id="app-container" class="container hidden">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-3xl font-bold text-gray-800">Expense Tracker</h2>
+            <button id="dark-mode-toggle" class="rounded-lg">Toggle Dark Mode</button>
+        </div>
+
+        <div class="flex justify-between items-center mb-4">
+            <h3 class="text-lg font-semibold text-gray-700">Welcome, <span id="current-username" class="text-blue-600"></span>!</h3>
+            <button id="logout-btn" class="text-red-500 hover:text-red-700 text-sm font-medium">Logout</button>
+        </div>
+
+        <div class="mb-6">
+            <h3 class="text-lg font-semibold text-gray-700 mb-2">YOUR BALANCE</h3>
+            <h1 id="balance" class="text-5xl font-extrabold text-center text-gray-900">₹0.00</h1>
+        </div>
+
+        <div class="balance-summary flex justify-between mb-6">
+            <div class="income flex-1 mr-2 rounded-lg">
+                <h4 class="text-sm uppercase tracking-wider mb-1">Income</h4>
+                <p id="money-plus" class="text-2xl font-bold">₹0.00</p>
+            </div>
+            <div class="expense flex-1 ml-2 rounded-lg">
+                <h4 class="text-sm uppercase tracking-wider mb-1">Expense</h4>
+                <p id="money-minus" class="text-2xl font-bold">₹0.00</p>
+            </div>
+        </div>
+
+        <!-- Budget and Savings Goals -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <div class="bg-blue-100 dark:bg-blue-800 text-blue-800 dark:text-blue-100 p-4 rounded-lg shadow-sm">
+                <h4 class="text-sm uppercase tracking-wider mb-1">Monthly Budget</h4>
+                <p id="budget-display" class="text-xl font-bold">₹0.00</p>
+                <p id="budget-remaining" class="text-sm">Remaining: <span class="font-bold">₹0.00</span></p>
+                <input type="number" id="budget-input" placeholder="Set monthly budget" class="mt-2 p-2 w-full rounded-md text-gray-800 dark:text-gray-200 bg-blue-50 dark:bg-blue-700 border border-blue-200 dark:border-blue-600" />
+                <button id="set-budget-btn" class="btn w-full mt-2 text-sm">Set Budget</button>
+            </div>
+            <div class="bg-purple-100 dark:bg-purple-800 text-purple-800 dark:text-purple-100 p-4 rounded-lg shadow-sm">
+                <h4 class="text-sm uppercase tracking-wider mb-1">Savings Goal</h4>
+                <p id="savings-goal-display" class="text-xl font-bold">₹0.00</p>
+                <p id="savings-progress" class="text-sm">Progress: <span class="font-bold">0%</span></p>
+                <input type="number" id="savings-input" placeholder="Set savings goal" class="mt-2 p-2 w-full rounded-md text-gray-800 dark:text-gray-200 bg-purple-50 dark:bg-purple-700 border border-purple-200 dark:border-purple-600" />
+                <button id="set-savings-btn" class="btn w-full mt-2 text-sm">Set Goal</button>
+            </div>
+        </div>
+
+        <!-- Tips and Alerts -->
+        <div id="tips-alerts" class="message-box success mb-6">
+            <!-- Tips and alerts will be displayed here -->
+        </div>
+
+        <h3 class="text-lg font-semibold text-gray-700 mb-4 border-b pb-2">History</h3>
+        <!-- Smart Filters -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            <div>
+                <label for="filter-date" class="block text-sm font-medium text-gray-700 mb-2">Filter by Date:</label>
+                <input type="date" id="filter-date" class="form-group rounded-lg" />
+            </div>
+            <div>
+                <label for="filter-category" class="block text-sm font-medium text-gray-700 mb-2">Filter by Category:</label>
+                <select id="filter-category" class="form-group rounded-lg">
+                    <option value="">All Categories</option>
+                    <!-- Categories will be populated by JS -->
+                </select>
+            </div>
+            <div>
+                <label for="filter-type" class="block text-sm font-medium text-gray-700 mb-2">Filter by Type:</label>
+                <select id="filter-type" class="form-group rounded-lg">
+                    <option value="">All Types</option>
+                    <option value="income">Income</option>
+                    <option value="expense">Expense</option>
+                </select>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div>
+                <label for="filter-min-amount" class="block text-sm font-medium text-gray-700 mb-2">Min Amount:</label>
+                <input type="number" id="filter-min-amount" placeholder="Min amount" class="form-group rounded-lg" />
+            </div>
+            <div>
+                <label for="filter-max-amount" class="block text-sm font-medium text-gray-700 mb-2">Max Amount:</label>
+                <input type="number" id="filter-max-amount" placeholder="Max amount" class="form-group rounded-lg" />
+            </div>
+        </div>
+        <!-- Search Input -->
+        <div class="mb-4">
+            <label for="search-input" class="block text-sm font-medium text-gray-700 mb-2">Search Description:</label>
+            <input type="text" id="search-input" placeholder="Search transactions by description..." class="form-group rounded-lg" />
+        </div>
+
+        <ul id="list" class="list-none p-0 mb-6 max-h-60 overflow-y-auto">
+            <!-- Transactions will be added here by JavaScript -->
+        </ul>
+
+        <h3 class="text-lg font-semibold text-gray-700 mb-4 border-b pb-2">Add new transaction</h3>
+        <form id="form">
+            <div class="form-group mb-4">
+                <label for="text">Description</label>
+                <input type="text" id="text" placeholder="Enter description..." class="rounded-lg" />
+            </div>
+            <div class="form-group mb-4">
+                <label for="amount">Amount <br /> (negative - expense, positive - income)</label>
+                <input type="number" id="amount" placeholder="Enter amount..." class="rounded-lg" />
+            </div>
+            <div class="form-group mb-4">
+                <label for="category">Category</label>
+                <select id="category" class="rounded-lg">
+                    <!-- Categories will be populated by JS -->
+                </select>
+                <button type="button" id="manage-categories-btn" class="btn w-full mt-2 text-sm bg-gray-500 hover:bg-gray-600">Manage Categories</button>
+            </div>
+            <div class="form-group mb-4">
+                <label for="date">Date</label>
+                <input type="date" id="date" class="rounded-lg" />
+            </div>
+            <button class="btn rounded-lg">Add transaction</button>
+        </form>
+
+        <!-- Visual Analytics -->
+        <h3 class="text-lg font-semibold text-gray-700 mt-8 mb-4 border-b pb-2">Financial Trends Over Time</h3>
+        <div class="chart-container mb-6">
+            <canvas id="line-chart"></canvas>
+        </div>
+
+        <!-- Download Report Button -->
+        <button id="download-report-btn" class="btn rounded-lg bg-green-500 hover:bg-green-600 mt-4">Download Report (TXT)</button>
+        <button id="download-pdf-report-btn" class="btn rounded-lg bg-red-500 hover:bg-red-600 mt-4">Download Report (PDF)</button>
+    </div>
+
+    <!-- Category Management Modal -->
+    <div id="category-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3 class="text-xl font-bold mb-4">Manage Categories</h3>
+            <div class="mb-4">
+                <label for="new-category-input" class="block text-sm font-medium text-gray-700 mb-2">Add New Category:</label>
+                <input type="text" id="new-category-input" placeholder="Enter new category name" class="form-group rounded-lg" />
+                <button id="add-category-btn" class="btn w-full mt-2 text-sm">Add Category</button>
+            </div>
+            <h4 class="text-lg font-semibold mb-2">Existing Categories:</h4>
+            <ul id="category-list" class="list-none p-0 max-h-40 overflow-y-auto border rounded-lg p-2">
+                <!-- Categories will be listed here -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- Chart.js and jsPDF/html2canvas scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
