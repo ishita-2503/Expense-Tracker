@@ -1,0 +1,388 @@
+/* Custom styles for Inter font and general body styling */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f0f4f8; /* Light gray background */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align items to the start to prevent vertical centering issues on smaller screens */
+    min-height: 100vh; /* Minimum height to take full viewport height */
+    padding: 20px; /* Add some padding around the content */
+    box-sizing: border-box; /* Include padding in element's total width and height */
+    transition: background-color 0.3s ease; /* Smooth transition for dark mode */
+}
+
+/* Dark mode styles */
+body.dark-mode {
+    background-color: #1a202c; /* Dark background */
+    color: #e2e8f0; /* Light text */
+}
+
+body.dark-mode .container {
+    background-color: #2d3748; /* Darker container */
+    border-color: #4a5568;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .text-gray-800 {
+    color: #e2e8f0;
+}
+
+body.dark-mode .text-gray-700 {
+    color: #cbd5e0;
+}
+
+body.dark-mode .text-gray-900 {
+    color: #ffffff;
+}
+
+body.dark-mode .balance-summary div {
+    background-color: #4a5568;
+    color: #e2e8f0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+body.dark-mode .balance-summary .income {
+    background-color: #2f855a; /* Darker green for income */
+    color: #e6fffa;
+}
+
+body.dark-mode .balance-summary .expense {
+    background-color: #c53030; /* Darker red for expense */
+    color: #fed7d7;
+}
+
+body.dark-mode .list-item {
+    background-color: #4a5568;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .list-item.income {
+    border-left-color: #48bb78; /* Brighter green */
+}
+
+body.dark-mode .list-item.expense {
+    border-left-color: #fc8181; /* Brighter red */
+}
+
+body.dark-mode .list-item button {
+    background-color: #e53e3e;
+}
+
+body.dark-mode .list-item button:hover {
+    background-color: #c53030;
+}
+
+body.dark-mode .form-group label {
+    color: #cbd5e0;
+}
+
+body.dark-mode .form-group input,
+body.dark-mode .form-group select {
+    background-color: #4a5568;
+    border-color: #6a768f;
+    color: #e2e8f0;
+}
+
+body.dark-mode .form-group input:focus,
+body.dark-mode .form-group select:focus {
+    border-color: #63b3ed;
+    box-shadow: 0 0 0 3px rgba(99, 179, 237, 0.5);
+}
+
+body.dark-mode .btn,
+body.dark-mode #dark-mode-toggle {
+    background-color: #63b3ed;
+}
+
+body.dark-mode .btn:hover,
+body.dark-mode #dark-mode-toggle:hover {
+    background-color: #4299e1;
+}
+
+/* Container styling */
+.container {
+    background-color: #ffffff; /* White background for the container */
+    padding: 30px;
+    border-radius: 15px; /* More rounded corners */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Softer shadow */
+    width: 100%;
+    max-width: 600px; /* Increased max width for more content */
+    border: 1px solid #e2e8f0; /* Light border */
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Balance and summary styling */
+.balance-summary div {
+    padding: 15px 20px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Subtle shadow for summary boxes */
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.balance-summary .income {
+    background-color: #d4edda; /* Light green */
+    color: #155724; /* Dark green text */
+}
+
+.balance-summary .expense {
+    background-color: #f8d7da; /* Light red */
+    color: #721c24; /* Dark red text */
+}
+
+/* Transaction list styling */
+.list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8fafc; /* Very light blue-gray */
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03); /* Very subtle shadow */
+    border-left: 5px solid; /* For income/expense indicator */
+    transition: transform 0.2s ease-in-out, background-color 0.3s ease, border-left-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.list-item:hover {
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+
+.list-item.income {
+    border-left-color: #28a745; /* Green for income */
+}
+
+.list-item.expense {
+    border-left-color: #dc3545; /* Red for expense */
+}
+
+.list-item button {
+    background-color: #ef4444; /* Red for delete button */
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.list-item button:hover {
+    background-color: #dc2626; /* Darker red on hover */
+}
+
+/* Form styling */
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #4a5568; /* Darker text for labels */
+    transition: color 0.3s ease;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cbd5e0; /* Light gray border */
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    box-sizing: border-box; /* Ensure padding doesn't add to width */
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.3s ease, color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #4299e1; /* Blue border on focus */
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5); /* Blue shadow on focus */
+    outline: none;
+}
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #4299e1; /* Blue button */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+}
+
+.btn:hover {
+    background-color: #3182ce; /* Darker blue on hover */
+    transform: translateY(-1px); /* Slight lift */
+}
+
+.btn:active {
+    transform: translateY(0); /* Press effect */
+}
+
+#dark-mode-toggle {
+    background-color: #60a5fa; /* Light blue for toggle */
+    color: white;
+    padding: 8px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease-in-out;
+}
+
+#dark-mode-toggle:hover {
+    background-color: #3b82f6;
+}
+
+/* Login page specific styles */
+#login-page {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    animation: fadeIn 0.8s ease-out;
+}
+
+#login-page h2 {
+    color: #2d3748;
+    margin-bottom: 25px;
+}
+
+#login-page input[type="text"],
+#login-page input[type="password"] {
+    padding: 12px;
+    border: 1px solid #cbd5e0;
+    border-radius: 8px;
+    width: calc(100% - 24px); /* Account for padding */
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+#login-page button {
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    background-color: #4299e1;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#login-page button:hover {
+    background-color: #3182ce;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Message box styling */
+.message-box {
+    background-color: #fefcbf;
+    color: #8a6519;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: 500;
+    border: 1px solid #fce883;
+    display: none; /* Hidden by default */
+}
+
+.message-box.error {
+    background-color: #fbd38d;
+    color: #9c4221;
+    border-color: #f6ad55;
+}
+
+.message-box.success {
+    background-color: #c6f6d5;
+    color: #22543d;
+    border-color: #68d391;
+}
+
+/* Category Management Modal */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    width: 80%;
+    max-width: 500px;
+    position: relative;
+    animation: slideIn 0.3s ease-out;
+}
+
+body.dark-mode .modal-content {
+    background-color: #2d3748;
+    color: #e2e8f0;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+body.dark-mode .close-button:hover,
+body.dark-mode .close-button:focus {
+    color: #e2e8f0;
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .container, #login-page {
+        padding: 20px;
+    }
+    .balance-summary {
+        flex-direction: column;
+    }
+    .balance-summary div {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .balance-summary div:first-child {
+        margin-bottom: 15px;
+    }
+    .modal-content {
+        width: 95%;
+    }
+}
